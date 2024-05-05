@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import router from "./src/routes/index.js";
+import pkg from 'pg';
+const { Pool } = pkg;
 dotenv.config();
 
 const app = express();

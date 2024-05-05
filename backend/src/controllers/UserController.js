@@ -1,5 +1,5 @@
-import { hashPassword } from "../auth";
-import userModel from "../models/UserModel"
+import { hashPassword } from "../auth.js";
+import userModel from "../models/UserModel.js"
 
 export default class UserController {
     static async signup(req, res) {
