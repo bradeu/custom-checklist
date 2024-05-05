@@ -1,6 +1,17 @@
+import { hashPassword } from "../auth";
+import userModel from "../models/UserModel"
+
 export default class UserController {
-    static signup(req, res) {
-        res.status(200).send("signup");
+    static async signup(req, res) {
+        const args = req.body;
+        const hashedPassword = await hashPassword(args.password);
+        args.password = hashedPassword;
+
+        return userModel.create(args).then(() => {
+            console.log("User created")
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 
     static login(req, res) {

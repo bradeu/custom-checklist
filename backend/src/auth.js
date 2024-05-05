@@ -11,3 +11,5 @@ const hashPassword = (password) => {
         console.log(err);
     })
 }
+
+export { hashPassword };
