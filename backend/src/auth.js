@@ -10,6 +10,17 @@ const hashPassword = (password) => {
     .catch((err) => {
         console.log(err);
     })
-}
+};
 
-export { hashPassword };
+const comparePassword = (givenPassword, hash) => {
+    return bcrypt
+        .compare(givenPassword, hash)
+        .then((result) => {
+            return result;
+        })
+        .catch((err) => {
+            console.log(err);
+        })  
+};
+
+export { hashPassword, comparePassword };
