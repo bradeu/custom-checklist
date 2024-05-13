@@ -6,7 +6,7 @@ const router = express.Router();
 router
     .get("/", (req, res) => {
         console.log("authenticate here");
-        res.status(200).send("authenticate");
+        res.status(200).send("authenticate here");
     })
     .post("/signup", UserController.signup)
     .post("/login", UserController.login);

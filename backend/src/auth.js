@@ -15,6 +15,7 @@ const hashPassword = (password) => {
     })
 };
 
+// Checks password with bcrypt
 const comparePassword = (givenPassword, hash) => {
     return bcrypt
         .compare(givenPassword, hash) // Checks password from user and hashed password
