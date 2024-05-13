@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import bodyParser from 'body-parser';
 import router from "./src/routes/index.js";
 import pkg from 'pg';
 const { Pool } = pkg;
@@ -32,10 +33,12 @@ pgPool.connect((err, client, release) => {
     console.log("Test Connection Closed")
 });
 
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.use("/", router);
-
 
 // Start server
 app.listen(port, () => {
