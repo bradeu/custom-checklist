@@ -1,12 +1,13 @@
 import express from "express";
-import userRouter from "./UserRoute.js"
+import userRouter from "./UserRoute.js";
+import {authenticateToken} from "../auth.js";
 
 const router = express.Router();
 
 router
-    .get("/", (req, res) => {
-        console.log("hello world");
-        res.status(200).send("hello world");
+    .get("/", authenticateToken, (req, res) => {
+        console.log(req.user.userId);
+        res.status(200).send(req.user.userId);
     })
     .use("/user", userRouter);
 
