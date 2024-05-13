@@ -5,8 +5,8 @@ const router = express.Router();
 
 router
     .get("/", (req, res) => {
-        console.log("list");
-        res.status(200).send("list");
+        console.log(req.user.userId);
+        res.status(200).send(req.user.userId);
     })
     .post("/create", ListController.create)
     .post("/read", ListController.read)

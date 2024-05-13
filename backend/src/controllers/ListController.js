@@ -4,8 +4,9 @@ export default class ListController {
     
     static create(req, res) {
         const args = req.body;
+        const email = req.user.userId;
 
-        listModel.create(args).then(() => {
+        listModel.create(args, email).then(() => {
             console.log("List item created successfully");
             res.status(200).send("List item created successfully");
         }).catch(err => {
@@ -15,9 +16,9 @@ export default class ListController {
     }
 
     static read(req, res) {
-        const args = req.body;
+        const email = req.user.userId;
 
-        listModel.read(args).then(result => {
+        listModel.read(email).then(result => {
             if (result) {
                 console.log("List read successfully");
                 res.status(200).send(result);
@@ -33,8 +34,9 @@ export default class ListController {
 
     static update(req, res) {
         const args = req.body;
+        const email = req.user.userId;
 
-        listModel.update(args).then(() => {
+        listModel.update(args, email).then(() => {
             console.log("List item updated successfully");
             res.status(200).send("List item updated successfully");
         }).catch(err => {
@@ -45,8 +47,9 @@ export default class ListController {
 
     static delete(req, res) {
         const args = req.body;
+        const email = req.user.userId;
 
-        listModel.delete(args).then(() => {
+        listModel.delete(args, email).then(() => {
             console.log("List item deleted successfully");
             res.status(200).send("List item deleted successfully");
         }).catch(err => {
