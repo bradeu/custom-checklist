@@ -9,8 +9,8 @@ export default class UserController {
         args.password = hashedPassword;
 
         userModel.create(args).then(() => {
-            console.log("User created");
-            res.status(200).send(result);
+            console.log("User created successfully");
+            res.status(200).send("User created successfully");
         }).catch((err) => {
             console.log(err);
             res.status(500).send(err);
@@ -20,7 +20,7 @@ export default class UserController {
     static login(req, res) {
         const args = req.body;
 
-        UserModel.get(args.email).then(async (user) => {
+        userModel.get(args.email).then(async (user) => {
             if (user) {
                 const valid = await comparePassword(args.password, user.password);
                 if (valid) {
@@ -34,17 +34,20 @@ export default class UserController {
                             algorithm: "HS256"
                         }
                     );
+                    console.log("Token created successfully");
                     res.status(200).send(token);
                 } else {
+                    console.log("Invalid password");
                     res.status(500).send("Invalid password");
                 }
             } else {
+                console.log("User not found");
                 res.status(500).send("User not found");
             }
         })
         .catch(err => {
-            console.log('Error logging in user:', err);
-            res.status(500).send('Error logging in user');
+            console.log("Error logging in user:", err);
+            res.status(500).send("Error logging in user");
         });
     }
 }

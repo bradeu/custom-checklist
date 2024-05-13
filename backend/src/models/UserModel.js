@@ -6,7 +6,7 @@ class UserModel {
         const values = [user.name, user.email, user.password];
 
         return pool.query(query, values)
-            .then(() => { console.log("User created successfully")})
+            .then(() => {console.log("User created successfully")})
             .catch(err => {console.log(err);})}
 
     get(email) {
