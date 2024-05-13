@@ -18,12 +18,12 @@ export default class ListController {
         const args = req.body;
 
         listModel.read(args).then(result => {
-            if (result == null) {
-                console.log("Not Found");
-                res.status(500).send("Not found")
-            } else {
+            if (result) {
                 console.log("List read successfully");
                 res.status(200).send(result);
+            } else {
+                console.log("Not Found");
+                res.status(500).send("Not found");
             }
         }).catch(err => {
             console.log(err);
