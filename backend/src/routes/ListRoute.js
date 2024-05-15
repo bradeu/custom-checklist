@@ -9,7 +9,7 @@ router
         res.status(200).send(req.user.userId);
     })
     .post("/create", ListController.create)
-    .post("/read", ListController.read)
+    .get("/read", ListController.read)
     .post("/update", ListController.update)
     .post("/delete", ListController.delete)
 

@@ -1,11 +1,31 @@
-import axios, { AxiosRequestConfig, AxiosError } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
-const api = axios.create({
-    baseURL: 'https://your-api-url.com',
+// Retrieves the bearer token
+const getToken = () : string | null => {
+    return localStorage.getItem('token');
+}
+
+// Create an axios instance with the base configuration
+const api: AxiosInstance = axios.create({
+    baseURL: 'http://localhost:3000'
+    ,
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
-export default api;
+// Request interceptor to include the bearer token dynamically
+api.interceptors.request.use(
+    config => {
+        const token = getToken();
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+        return config;
+    },
+    error => {
+        return Promise.reject(error);
+    }
+);
 
+export default api;
