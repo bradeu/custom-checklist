@@ -8,10 +8,10 @@ export default class ListController {
 
         listModel.create(args, email).then(() => {
             console.log("List item created successfully");
-            res.status(200).send("List item created successfully");
+            res.status(200).json({message: "List item created successfully"});
         }).catch(err => {
             console.log(err);
-            res.status(500).send(err);
+            res.status(500).json({error: err});
         });
     }
 
@@ -21,14 +21,14 @@ export default class ListController {
         listModel.read(email).then(result => {
             if (result) {
                 console.log("List read successfully");
-                res.status(200).send(result);
+                res.status(200).json({result: result});
             } else {
                 console.log("Not Found");
-                res.status(500).send("Not found");
+                res.status(500).json({message: "Not found"});
             }
         }).catch(err => {
             console.log(err);
-            res.status(500).send(err);
+            res.status(500).json({error: err});
         });
     }
 
@@ -38,10 +38,10 @@ export default class ListController {
 
         listModel.update(args, email).then(() => {
             console.log("List item updated successfully");
-            res.status(200).send("List item updated successfully");
+            res.status(200).json({message: "List item updated successfully"});
         }).catch(err => {
             console.log(err);
-            res.status(500).send(err);
+            res.status(500).json({error: err});
         });
     }
 
@@ -51,10 +51,10 @@ export default class ListController {
 
         listModel.delete(args, email).then(() => {
             console.log("List item deleted successfully");
-            res.status(200).send("List item deleted successfully");
+            res.status(200).json({message: "List item deleted successfully"});
         }).catch(err => {
             console.log(err);
-            res.status(500).send(err);
+            res.status(500).json({error: err});
         });
     }
 }
