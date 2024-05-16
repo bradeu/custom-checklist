@@ -2,7 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from 'body-parser';
 import router from "./src/routes/index.js";
-import pkg from 'pg';
+import pkg from "pg";
+import cors from "cors";
+
 const { Pool } = pkg;
 dotenv.config();
 
@@ -36,6 +38,7 @@ pgPool.connect((err, client, release) => {
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 // Routes
 app.use("/", router);
