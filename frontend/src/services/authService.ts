@@ -17,10 +17,8 @@ const login = async (email: string, password: string): Promise<string> => {
         const response = await api.post('/user/login', { email, password });
         const token = response.data.token;
 
-        // Store the token in localStorage
         localStorage.setItem('token', token);
-
-        // Return the token
+        
         return token;
     } catch (error) {
         console.error('Login failed', error);
